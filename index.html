@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Mando Judicial</title>
+<style>
+  body { margin:0; background:#eef5ff; }
+  .cm { font-family:'Segoe UI',Arial,sans-serif; max-width:1100px; margin:auto; padding:16px; color:#0f172a; }
+  .cm * { box-sizing:border-box; }
+  .cm h2 { margin:0 0 12px; }
+
+  .cm-top { background:linear-gradient(135deg,#0b1f4d,#1e3a8a,#0e7490); background-size:200% 200%;
+    animation:cmFondo 10s ease infinite; color:#fff; padding:34px 28px; border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.25); text-align:center; }
+  @keyframes cmFondo { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  .cm-top h1 { margin:0 0 8px; font-size:32px; }
+  .cm-top p { margin:0; font-size:17px; opacity:.95; }
+
+  .cm-estado { margin-top:22px; background:#f8fafc; padding:22px; border-radius:20px; border-left:8px solid #2563eb; }
+  .cm-form { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .cm-form input { flex:1 1 260px; padding:12px 18px; border-radius:30px; border:2px solid #cbd5e1; font-size:16px;
+    font-family:inherit; color:#0f172a; background:#fff; }
+  .cm-form input:focus { outline:none; border-color:#2563eb; }
+  .cm-btn { border:0; cursor:pointer; padding:12px 24px; border-radius:30px; font-size:15px; font-weight:700; color:#fff;
+    background:linear-gradient(90deg,#2563eb,#06b6d4); font-family:inherit; transition:transform .2s; }
+  .cm-btn:hover { transform:scale(1.06); }
+  .cm-msg { margin:12px 0 0; font-weight:600; min-height:22px; }
+
+  .cm-menu { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-top:26px; }
+  .cm-menu a { text-decoration:none; color:inherit; display:block; padding:25px; border-radius:20px;
+    transition:transform .25s, box-shadow .25s; }
+  .cm-menu a:hover { transform:translateY(-5px); box-shadow:0 10px 22px rgba(0,0,0,.15); }
+  .cm-menu h3 { margin:0 0 6px; }
+  .cm-menu p { margin:0; font-size:15px; }
+
+  .cm-volver { display:inline-block; margin-top:26px; padding:8px 18px; border-radius:30px; background:#e2e8f0;
+    color:#1e3a8a; font-weight:600; text-decoration:none; transition:all .25s; }
+  .cm-volver:hover { background:#1e3a8a; color:#fff; transform:translateX(-4px); }
+
+  @media (max-width:600px){ .cm-top h1{font-size:24px} }
+</style>
+</head>
+<body>
+
+<div class="cm">
+
+  <div class="cm-top">
+    <h1>🛡️ Centro de Mando Judicial</h1>
+    <p>Completa las misiones en orden, gana Puntos de Justicia y asciende hasta Magistrado Digital.</p>
+  </div>
+
+  <div class="cm-estado">
+    <h2>🪪 Introduce tu nombre, Recluta Digital</h2>
+    <div class="cm-form">
+      <input id="nombre" type="text" maxlength="60" autocomplete="name"
+             placeholder="Escribe tu nombre completo (nombre y apellidos)">
+      <button id="guardar" class="cm-btn" type="button">Guardar nombre</button>
+    </div>
+    <p class="cm-msg" id="msg"></p>
+  </div>
+
+  <!-- ACCESO A LAS SECCIONES DEL SITIO -->
+  <div class="cm-menu">
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/programa" style="background:#e0f2fe;">
+      <h3>🎯 Programa</h3><p>Objetivos, competencias y criterios de evaluación.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/ruta-formativa" style="background:#dcfce7;">
+      <h3>🚀 Ruta Formativa</h3><p>Avanza a través de los 4 niveles de formación.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/misiones" style="background:#fef3c7;">
+      <h3>🧩 Misiones</h3><p>Retos y actividades semanales.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/insignias" style="background:#fee2e2;">
+      <h3>🏅 Insignias</h3><p>Logros desbloqueados durante el programa.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/avatares" style="background:#f1f5f9;">
+      <h3>👥 Avatares</h3><p>Selecciona tu perfil profesional digital.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/ranking" style="background:#fde68a;">
+      <h3>🏆 Ranking</h3><p>Consulta la clasificación de Guardianes.</p></a>
+    <a target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/" style="background:#ede9fe;">
+      <h3>📚 Contacto</h3><p>Soporte / Información de contacto.</p></a>
+  </div>
+
+  <a class="cm-volver" target="_blank" rel="noopener noreferrer" href="https://sites.google.com/view/act2gamification-robertobg/inicio">← Volver al inicio</a>
+</div>
+
+<script>
+(function () {
+  // Misma clave que lee la página de Ranking
+  var CLAVE_NOMBRE = 'guardianes_nombre_v1';
+  var inp = document.getElementById('nombre');
+  var msg = document.getElementById('msg');
+
+  function leer() { try { return localStorage.getItem(CLAVE_NOMBRE) || ''; } catch (e) { return ''; } }
+
+  function limpiar(v) {
+    return v.replace(/[<>]/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  function mostrar(texto, ok) {
+    msg.style.color = ok ? '#166534' : '#b91c1c';
+    msg.textContent = texto;
+  }
+
+  function guardar() {
+    var v = limpiar(inp.value);
+    if (v.split(' ').filter(Boolean).length < 2) {
+      mostrar('⚠️ Escribe tu nombre completo: al menos nombre y apellido.', false);
+      return;
+    }
+    try { localStorage.setItem(CLAVE_NOMBRE, v); }
+    catch (e) { mostrar('⚠️ Tu navegador no permite guardar el nombre. Revisa la configuración de cookies y datos del sitio.', false); return; }
+    inp.value = v;
+    mostrar('✅ ¡Bienvenido, ' + v + '! Tu nombre aparecerá en el Ranking de Guardianes.', true);
+  }
+
+  document.getElementById('guardar').addEventListener('click', guardar);
+  inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') guardar(); });
+
+  var previo = leer();
+  if (previo) {
+    inp.value = previo;
+    mostrar('✅ Sesión de ' + previo + '. Puedes cambiar tu nombre y volver a guardarlo.', true);
+  }
+})();
+</script>
+</body>
+</html>
